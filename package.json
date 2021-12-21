@@ -2,13 +2,19 @@
   "name": "bumbox-electron-portfolio-project",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "scripts": {
+    "start": "vue-cli-service build && electron .",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "electron": "^16.0.5",
+    "noble-winrt": "^0.1.1",
+    "node-bluetooth-serial-port": "^2.2.7",
+    "three": "^0.135.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
