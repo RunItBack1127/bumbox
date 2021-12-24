@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "vue-cli-service build && electron .",
+    "boot": "electron .",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"

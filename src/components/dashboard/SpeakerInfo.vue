@@ -7,10 +7,7 @@
 
 <script>
 export default {
-    name: 'SpeakerInfo',
-    props: {
-        dataMacAddr: String
-    }
+    name: 'SpeakerInfo'
 }
 </script>
 

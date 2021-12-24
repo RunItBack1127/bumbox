@@ -14,7 +14,8 @@ function _INIT_WINDOW() {
         height: WIN_CONSTANTS.HEIGHT,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        autoHideMenuBar: true
     });
     APP_WINDOW.loadFile(path.join(__dirname, './dist/index.html'));
 }

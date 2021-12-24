@@ -2,23 +2,23 @@
   <div class="container--fixed" id="speaker-model-container">
     <SpeakerModelDisplay/>
   </div>
-  <!-- <div class="container--fixed" id="dashboard-controls-container">
+  <div class="container--fixed" id="dashboard-controls-container">
     <DashboardControls/>
-  </div> -->
+  </div>
   <!-- <div class="container--fixed" id="model-customization-container">
     <ModelCustomizationControls/>
   </div> -->
 </template>
 
 <script>
-// import DashboardControls from './components/dashboard/DashboardControls.vue';
+import DashboardControls from './components/dashboard/DashboardControls.vue';
 // import ModelCustomizationControls from './components/customization/ModelCustomizationControls.vue';
 import SpeakerModelDisplay from './components/model_display/SpeakerModelDisplay.vue';
 
 export default {
   name: 'App',
   components: {
-    //DashboardControls,
+    DashboardControls,
     // ModelCustomizationControls
     SpeakerModelDisplay
   }
@@ -44,6 +44,12 @@ body {
   --app-background-color: #000;
 }
 
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 #app {
   font-family: var(--app-font);
   font-size: var(--app-font-size);
@@ -62,7 +68,7 @@ body {
 }
 
 #speaker-model-container {
-  z-index: -1;
+  z-index: 100;
 }
 
 #dashboard-controls-container {

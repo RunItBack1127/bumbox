@@ -1,22 +1,23 @@
 <template>
     <section>
-        <SpeakerInfo data-mac-addr='88:C6:26:8C:DA:34'/>
-        <SpeakerControls/>
-        <SpeakerVolumeSlider/>
+        <h1 id="speaker-display-name">UE MEGABOOM</h1>
+        <SpeakerControls :class="{'speaker-off': speakerOff}"/>
+        <SpeakerVolumeSlider :class="{'speaker-off': speakerOff}"/>
     </section>
 </template>
 
 <script>
-import SpeakerInfo from './SpeakerInfo.vue';
 import SpeakerControls from './SpeakerControls.vue';
 import SpeakerVolumeSlider from './SpeakerVolumeSlider.vue';
 
 export default {
     name: 'DashboardControls',
     components: {
-        SpeakerInfo,
         SpeakerControls,
         SpeakerVolumeSlider
+    },
+    props: {
+        speakerOff: Boolean
     }
 }
 </script>
@@ -26,9 +27,14 @@ section {
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: space-between;
     align-items: center;
     width: 75%;
-    height: 350px;
+}
+
+section h1 {
+    font-size: 4.75em;
+    letter-spacing: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 35px;
 }
 </style>
