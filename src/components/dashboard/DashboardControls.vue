@@ -17,7 +17,10 @@ export default {
         SpeakerVolumeSlider
     },
     props: {
-        speakerOff: Boolean
+        speakerOff: {
+            type: Boolean,
+            default: true
+        }
     }
 }
 </script>

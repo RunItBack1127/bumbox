@@ -10,6 +10,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 export default {
     name: 'SpeakerModelDisplay',
     data() {
+        return {
+            speakerModel: null
+        };
     },
     methods: {
         init: function() {
@@ -43,19 +46,21 @@ export default {
             this.speakerLoader = new GLTFLoader();
 
             this.speakerLoader.load("../src/assets/models/UE_MEGABOOM.glb", (speaker) => {
-                this.speakerModel = speaker.scene;
+                const speakerModel = speaker.scene;
 
-                const speakerBoundingBox = new THREE.Box3().setFromObject(this.speakerModel);
-                speakerBoundingBox.getCenter(this.speakerModel.position);
-                this.speakerModel.localToWorld(speakerBoundingBox);
-                this.speakerModel.position.multiplyScalar(-1);
+                const speakerBoundingBox = new THREE.Box3().setFromObject(speakerModel);
+                speakerBoundingBox.getCenter(speakerModel.position);
+                speakerModel.localToWorld(speakerBoundingBox);
+                speakerModel.position.multiplyScalar(-1);
 
-                this.speakerModel.translateX(0.2);
-                this.speakerModel.rotation.y += 0.35;
-                this.speakerModel.rotation.x -= 0.30;
+                speakerModel.translateX(0.2);
+                speakerModel.rotation.y += 0.35;
+                speakerModel.rotation.x -= 0.30;
 
-                this.scene.add(this.speakerModel);
+                this.scene.add(speakerModel);
                 console.log("Added to canvas");
+
+                this.speakerModel = speaker.scene;
             });
 
             window.addEventListener("resize", () => {
