@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: 'SpeakerControls.vue'
+    name: 'SpeakerControls'
 }
 </script>
 
