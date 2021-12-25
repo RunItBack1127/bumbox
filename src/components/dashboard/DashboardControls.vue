@@ -1,8 +1,8 @@
 <template>
     <section>
         <h1 id="speaker-display-name">UE MEGABOOM</h1>
-        <SpeakerControls :class="{'speaker-off': speakerOff}"/>
-        <SpeakerVolumeSlider :class="{'speaker-off': speakerOff}"/>
+        <SpeakerControls/>
+        <SpeakerVolumeSlider/>
     </section>
 </template>
 
@@ -15,12 +15,6 @@ export default {
     components: {
         SpeakerControls,
         SpeakerVolumeSlider
-    },
-    props: {
-        speakerOff: {
-            type: Boolean,
-            default: true
-        }
     }
 }
 </script>

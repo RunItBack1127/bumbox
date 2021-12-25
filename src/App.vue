@@ -1,13 +1,15 @@
 <template>
-  <div class="container--fixed" id="speaker-model-container">
-    <SpeakerModelDisplay/>
+  <div :class="{'speaker-off': this.speakerOff}" id="speaker-content-container">
+    <div class="container--fixed" id="speaker-model-container">
+      <SpeakerModelDisplay/>
+    </div>
+    <div class="container--fixed" id="dashboard-controls-container">
+      <DashboardControls/>
+    </div>
+    <!-- <div class="container--fixed" id="model-customization-container">
+      <ModelCustomizationControls/>
+    </div> -->
   </div>
-  <div class="container--fixed" id="dashboard-controls-container">
-    <DashboardControls/>
-  </div>
-  <!-- <div class="container--fixed" id="model-customization-container">
-    <ModelCustomizationControls/>
-  </div> -->
 </template>
 
 <script>
@@ -21,6 +23,11 @@ export default {
     DashboardControls,
     // ModelCustomizationControls
     SpeakerModelDisplay
+  },
+  data() {
+    return {
+      speakerOff: false,
+    }
   }
 }
 </script>
@@ -77,6 +84,11 @@ button {
   align-items: center;
   background-color: transparent;
   z-index: 100;
+}
+
+#speaker-content-container.speaker-off .speaker-toggle-control {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 @font-face {
