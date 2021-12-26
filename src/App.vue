@@ -26,8 +26,19 @@ export default {
   },
   data() {
     return {
-      speakerOff: false,
+      speakerOff: true,
     }
+  },
+  methods: {
+    init: function() {
+      window.ipc.on('toggle-speaker-off', () => {
+        console.log("In toggle speaker off");
+        this.speakerOff = !this.speakerOff;
+      });
+    }
+  },
+  mounted() {
+    this.init();
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div id="controls-container">
-        <button id="power-control-btn"></button>
+        <button :disabled="!this.foundPowerCharacteristic" @click="togglePower" id="power-control-btn"></button>
 
         <button data-battery-level='75%' class="speaker-toggle-control" id="battery-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -19,7 +19,33 @@
 
 <script>
 export default {
-    name: 'SpeakerControls'
+    name: 'SpeakerControls',
+    data() {
+        return {
+            foundPowerCharacteristic: false,
+            speakerOff: true
+        }
+    },
+    methods: {
+        init: function() {
+            window.ipc.on('stored-power-characteristic', () => {
+                this.foundPowerCharacteristic = true;
+            });
+        },
+        togglePower: function() {
+            console.log("Send turn on...");
+            if(this.speakerOff) {
+                console.log("Sending turn on...");
+                window.ipc.send('turn-on-speaker');
+            }
+            else {
+                window.ipc.send('turn-off-speaker');
+            }
+        }
+    },
+    mounted() {
+        this.init();
+    }
 }
 </script>
 
@@ -57,7 +83,7 @@ export default {
     background-image: url("../../assets/power-on-icon.png");
 }
 
-#battery-btn:before {
+/* #battery-btn:before {
     content: attr(data-battery-level);
     font-size: 1.25rem;
     letter-spacing: 0.25rem;
@@ -73,5 +99,10 @@ export default {
 
 #battery-btn:hover:before {
     opacity: 1.0;
+} */
+
+button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
 }
 </style>
