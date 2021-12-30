@@ -1,6 +1,11 @@
 <template>
     <div id="controls-container">
-        <button :disabled="!this.foundPowerCharacteristic" @click="togglePower" id="power-control-btn"></button>
+        <button :disabled="!this.foundPowerCharacteristic" @click="togglePower" id="power-control-btn">
+            <svg fill="#ff4400" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+                <rect x="46.574" y="15.865" width="5.669" height="35.33"/>
+                <path d="M49.408,83.895c-17.974,0-32.596-14.623-32.596-32.598c0-10.55,5.159-20.498,13.801-26.61l3.273,4.629 c-7.142,5.051-11.406,13.269-11.406,21.981c0,14.849,12.08,26.928,26.927,26.928c14.847,0,26.926-12.079,26.926-26.928 c0-8.712-4.263-16.929-11.404-21.98l3.273-4.629c8.642,6.113,13.801,16.06,13.801,26.609C82.004,69.271,67.382,83.895,49.408,83.895 z"/>
+            </svg>
+        </button>
 
         <button data-battery-level='75%' class="speaker-toggle-control" id="battery-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -33,9 +38,7 @@ export default {
             });
         },
         togglePower: function() {
-            console.log("Send turn on...");
             if(this.speakerOff) {
-                console.log("Sending turn on...");
                 window.ipc.send('turn-on-speaker');
             }
             else {
@@ -72,34 +75,6 @@ export default {
 #bluetooth-toggle-btn svg {
     stroke: #287aa9;
 }
-
-#power-control-btn {
-    background-image: url("../../assets/power-off-icon.png");
-    background-size: cover;
-    background-position: center;
-}
-
-#speaker-content-container.speaker-off #power-control-btn {
-    background-image: url("../../assets/power-on-icon.png");
-}
-
-/* #battery-btn:before {
-    content: attr(data-battery-level);
-    font-size: 1.25rem;
-    letter-spacing: 0.25rem;
-    position: absolute;
-    margin-top: -45px;
-    margin-left: -25px;
-    padding: 10px;
-    color: #fff;
-    width: 75px;
-    opacity: 0.0;
-    transition: opacity 200ms ease-in-out;
-}
-
-#battery-btn:hover:before {
-    opacity: 1.0;
-} */
 
 button:disabled {
     pointer-events: none;

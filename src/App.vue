@@ -6,22 +6,17 @@
     <div class="container--fixed" id="dashboard-controls-container">
       <DashboardControls/>
     </div>
-    <!-- <div class="container--fixed" id="model-customization-container">
-      <ModelCustomizationControls/>
-    </div> -->
   </div>
 </template>
 
 <script>
 import DashboardControls from './components/dashboard/DashboardControls.vue';
-// import ModelCustomizationControls from './components/customization/ModelCustomizationControls.vue';
 import SpeakerModelDisplay from './components/model_display/SpeakerModelDisplay.vue';
 
 export default {
   name: 'App',
   components: {
     DashboardControls,
-    // ModelCustomizationControls
     SpeakerModelDisplay
   },
   data() {
@@ -32,7 +27,6 @@ export default {
   methods: {
     init: function() {
       window.ipc.on('toggle-speaker-off', () => {
-        console.log("In toggle speaker off");
         this.speakerOff = !this.speakerOff;
       });
     }

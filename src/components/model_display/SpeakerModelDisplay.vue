@@ -22,9 +22,6 @@ export default {
             this.light = new THREE.AmbientLight( 0xfffffff, 1.0 );
             this.scene.add(this.light);
 
-            // Change position to wherever Solidworks places
-            // the light for the speaker model
-
             this.camera = new THREE.PerspectiveCamera(45,
                 window.innerWidth / window.innerHeight, 0.1, 1000);
             this.camera.position.set(-0.02540621871857456, 0.017868458351830627, -0.3374866452825374);
@@ -33,14 +30,9 @@ export default {
             this.renderer.setSize(window.innerWidth, window.innerHeight);
 
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-            // controls.enableDamping = true;
-
-            //const coords = document.getElementById("coords");
 
             window.addEventListener("DOMContentLoaded", () => {
                 document.querySelector("#model-container").appendChild(this.renderer.domElement);
-                // coords.textContent = `x: ${camera.position.x},
-                //     y: ${camera.position.y}, z: ${camera.position.z}`;
             });
 
             this.speakerLoader = new GLTFLoader();

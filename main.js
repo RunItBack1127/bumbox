@@ -1,7 +1,6 @@
-const { app, ipcRenderer, ipcMain, BrowserWindow } = require('electron');
+const { app, ipcMain, BrowserWindow } = require('electron');
 const path = require('path');
 const noble = require('noble-winrt');
-// const { BluetoothSerialPort } = require('node-bluetooth-serial-port');
 
 const WIN_CONSTANTS = {
     WIDTH: 1366,
@@ -15,8 +14,7 @@ const SPEAKER_CONTENTS = {
     POWER_ON_UUID: "c6d6dc0d-07f5-47ef-9b59-630622b01fd3",
     MAC_ADDR: "88:C6:26:8C:DA:34",
     ID: "88c6268cda34",
-    POWER_ON_CHARACTERISTIC: null,
-    // SERIAL_PORT: new BluetoothSerialPort()
+    POWER_ON_CHARACTERISTIC: null
 }
 
 function _INIT_WINDOW() {
@@ -73,6 +71,7 @@ function _INIT_SCAN_FOR_SPEAKER() {
                     (error, services, chars) => {
                         APP_WINDOW.webContents.send('stored-power-characteristic');
                         storePowerOnCharacteristic(chars[0]);
+                        noble.stopScanning();
                     });
             });
         }
@@ -85,24 +84,10 @@ function _TURN_ON_SPEAKER() {
     SPEAKER_CONTENTS.POWER_ON_CHARACTERISTIC.write(powerOnBuffer, true, error => {
         console.log(error);
     });
+    noble.startScanning();
 }
-
-// function _TURN_OFF_SPEAKER() {
-//     SPEAKER_CONTENTS.SERIAL_PORT(SPEAKER_CONTENTS.MAC_ADDR, (channel) => {
-//         SPEAKER_CONTENTS.SERIAL_PORT.connect(SPEAKER_CONTENTS.MAC_ADDR, channel, () => {
-            
-//         });
-//     });
-
-//     SPEAKER_CONTENTS.SERIAL_PORT.inquire();
-// }
 
 ipcMain.on('turn-on-speaker', (event, arg) => {
     _TURN_ON_SPEAKER();
     APP_WINDOW.webContents.send('toggle-speaker-off');
 });
-
-// ipcMain.on('turn-off-speaker', (event, arg) => {
-//     _TURN_OFF_SPEAKER();
-//     ipc.send('toggle-speaker-off');
-// });
