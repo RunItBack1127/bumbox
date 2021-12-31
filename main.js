@@ -30,6 +30,7 @@ function _INIT_WINDOW() {
         autoHideMenuBar: true
     });
     APP_WINDOW.loadFile(path.join(__dirname, './dist/index.html'));
+    APP_WINDOW.maximize();
 }
 
 app.whenReady().then(() => {
