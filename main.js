@@ -56,9 +56,7 @@ function _INIT_SCAN_FOR_SPEAKER() {
     });
 
     noble.on('discover', (peripheral) => {
-        console.log("Scanning peripherals");
         if(peripheral.id === SPEAKER_CONTENTS.ID) {
-            console.log('Found speaker');
 
             function storePowerOnCharacteristic(powerOnChar) {
                 SPEAKER_CONTENTS.POWER_ON_CHARACTERISTIC = powerOnChar;
@@ -81,9 +79,7 @@ _INIT_SCAN_FOR_SPEAKER();
 
 function _TURN_ON_SPEAKER() {
     const powerOnBuffer = Buffer.from([0xEC, 0x5C, 0x68, 0x4A, 0xAD, 0x5C, 0x01]);
-    SPEAKER_CONTENTS.POWER_ON_CHARACTERISTIC.write(powerOnBuffer, true, error => {
-        console.log(error);
-    });
+    SPEAKER_CONTENTS.POWER_ON_CHARACTERISTIC.write(powerOnBuffer, true, error => {});
     noble.startScanning();
 }
 

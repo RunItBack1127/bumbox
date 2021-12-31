@@ -33,6 +33,7 @@ export default {
   },
   mounted() {
     this.init();
+    document.title = 'Bumbox';
   }
 }
 </script>
